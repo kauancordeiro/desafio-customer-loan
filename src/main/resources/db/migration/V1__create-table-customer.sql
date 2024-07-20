@@ -1,0 +1,8 @@
+CREATE TABLE customer(
+    id UUID DEFAULT RANDOM_UUID() PRIMARY KEY,
+    age INTEGER NOT NULL,
+    cpf VARCHAR(20) NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    income DOUBLE NOT NULL,
+    location VARCHAR(2) NOT NULL
+);
