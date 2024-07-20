@@ -26,6 +26,15 @@ public class LoansService {
             responseList.add(new LoanResponse(LoansType.PERSONAL, loans.getPersonalLoanInterestRate()));
         }
 
+        if(loans.isConsignmentLoanAvailable()){
+            responseList.add(new LoanResponse(LoansType.CONSIGMENT, loans.getConsignmentLoanInterestRate()));
+        }
+
+        if (loans.isGuaranteedLoanAvailable()) {
+            responseList.add(new LoanResponse(LoansType.GUARRANTEED, loans.getGuaranteedLoanAvailable()));
+        }
+
+
 
         return new CustomerLoanResponse(loanRequest.name(), responseList);
     }
