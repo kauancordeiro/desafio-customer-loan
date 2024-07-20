@@ -1,0 +1,5 @@
+CREATE TABLE loans(
+    id UUID DEFAULT RANDOM_UUID() PRIMARY KEY,
+    type VARCHAR(30) NOT NULL,
+    interest_rate INTEGER NOT NULL
+)
