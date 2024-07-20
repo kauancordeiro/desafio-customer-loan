@@ -1,5 +1,7 @@
 package dev.kauan.customer_loan.controller;
 
+import dev.kauan.customer_loan.dto.CustomerLoanRequest;
+import dev.kauan.customer_loan.dto.CustomerLoanResponse;
 import dev.kauan.customer_loan.entities.Loans;
 import dev.kauan.customer_loan.services.LoansService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,19 +12,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/loans")
+@RequestMapping("")
 public class LoansController {
 
     @Autowired
     private LoansService loansService;
 
-    @PostMapping
-    public ResponseEntity<Loans> insertLoan(@RequestBody Loans loans){
-        Loans finalLoan = loansService.insertLoans(loans);
-        if(finalLoan != null){
-            return ResponseEntity.ok(finalLoan);
-        }
-        return ResponseEntity.badRequest().build();
+    @PostMapping("/customer-loans")
+    public ResponseEntity<CustomerLoanResponse> insertLoan(@RequestBody CustomerLoanRequest loanRequest){
+        var loanResponse = loansService.checkLoanAvailability(loanRequest);
+        return ResponseEntity.ok(loanResponse);
     }
 
 }
